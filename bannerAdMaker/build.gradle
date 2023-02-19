@@ -4,6 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
+apply plugin: 'kotlin-android-extensions'
+
 android {
     namespace 'com.example.banneradmaker'
     compileSdk 33
