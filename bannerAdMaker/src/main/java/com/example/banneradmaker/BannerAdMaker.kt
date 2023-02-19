@@ -1,6 +1,12 @@
 package com.example.banneradmaker
 
-fun AddNumbers (numberOne: Int, numberTwo: Int): Int {
+import android.content.Context
+import androidx.appcompat.app.AlertDialog
 
-    return (numberOne+numberTwo)
+fun library (context: Context) {
+
+    AlertDialog.Builder(context).setTitle("Title")
+        .setMessage("Library in use").show()
+
+    return
 }
