@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val result = AddNumbers(3,4)
+        Library(3,4)
 
-        AlertDialog.Builder(this).setTitle("The result is $result").show()
+        //AlertDialog.Builder(this).setTitle("The result is $result").show()
 
     }
 }
