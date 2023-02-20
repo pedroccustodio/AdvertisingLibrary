@@ -37,10 +37,10 @@ fun library (context: Context) {
     val a: Activity = context as Activity
     a.setContentView(com.example.banneradmaker.R.layout.activity_main)
 
-    val imgView: ImageView =
+    /*val imgView: ImageView =
         context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
 
-    imgView.visibility = ImageView.VISIBLE
+    imgView.visibility = ImageView.VISIBLE*/
 
 
     //return Build.VERSION.RELEASE
