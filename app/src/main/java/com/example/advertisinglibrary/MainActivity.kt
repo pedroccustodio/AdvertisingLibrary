@@ -9,11 +9,12 @@ import com.example.banneradmaker.library
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
 
-        val tvDisplay: TextView = findViewById<TextView>(R.id.tv_displayInfo)
-        tvDisplay.text = library()
+        //val tvDisplay: TextView = findViewById<TextView>(R.id.tv_displayInfo)
+        //tvDisplay.text = library()
 
+        library(this)
 
 
         //AlertDialog.Builder(this).setTitle("The result is $result").show()

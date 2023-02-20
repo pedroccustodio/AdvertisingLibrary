@@ -14,9 +14,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 
 @SuppressLint("HardwareIds")
-fun library (): String {
+fun library (context: Context) {
 
-    return "Brand: ${Build.BRAND} \n" +
+    /*return "Brand: ${Build.BRAND} \n" +
             "Model: ${Build.MODEL} \n" +
             "ID: ${Build.ID} \n" +
             "SDK: ${Build.VERSION.SDK_INT} \n" +
@@ -30,17 +30,19 @@ fun library (): String {
             "Host: ${Build.HOST} \n" +
             "FingerPrint: ${Build.FINGERPRINT} \n" +
             "Version Code: ${Build.VERSION.RELEASE}"
-}
-    /*AlertDialog.Builder(context).setTitle("Title")
+}*/
+    AlertDialog.Builder(context).setTitle("Title")
         .setMessage("Library in use").show()
 
     val a: Activity = context as Activity
     a.setContentView(com.example.banneradmaker.R.layout.activity_main)
 
-    val imgView: ImageView = context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+    val imgView: ImageView =
+        context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
 
     imgView.visibility = ImageView.VISIBLE
 
 
-    return Build.VERSION.RELEASE*/
+    //return Build.VERSION.RELEASE
+}
 
