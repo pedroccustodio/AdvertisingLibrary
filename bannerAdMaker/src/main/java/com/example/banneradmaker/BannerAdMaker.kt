@@ -3,22 +3,16 @@ package com.example.banneradmaker
 //noinspection SuspiciousImport
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DownloadManager
 import android.content.Context
-import android.net.Uri
-import android.os.Environment
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import com.squareup.picasso.Picasso
-import java.io.File
+import java.util.*
 
 @SuppressLint("HardwareIds")
-fun library (context: Context) {
+fun library (context: Context, url: String){
 
     /*return "Brand: ${Build.BRAND} \n" +
             "Model: ${Build.MODEL} \n" +
@@ -36,40 +30,28 @@ fun library (context: Context) {
             "Version Code: ${Build.VERSION.RELEASE}"
 }*/
 
-    AlertDialog.Builder(context).setTitle("Title")
-        .setMessage("Library in use").show()
+    /*AlertDialog.Builder(context).setTitle("Title")
+        .setMessage("Library in use").show()*/
     val a: Activity = context as Activity
-    //a.setContentView(com.example.banneradmaker.R.layout.activity_main)
 
-
-
-   // var fileName: String = "Banner Ad"
-
-    /*try{
-        var downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val imageLink = Uri.parse("https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg")
-        val request = DownloadManager.Request(imageLink)
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-            .setMimeType("image/jpeg")
-            .setAllowedOverRoaming(false)
-            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            .setTitle(fileName)
-            .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+fileName+".jpg")
-        downloadManager.enqueue(request)
-        Toast.makeText(context, "Image is Donloaded", Toast.LENGTH_LONG).show()
-
-    } catch (e: Exception){
-        Toast.makeText(context, "Image Download failed", Toast.LENGTH_LONG).show()
-    }*/
 
     val imgView: ImageView = context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
-    val url = "https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg"
-
     Picasso.with(context).load(url).into(imgView)
 
-    //imgView.visibility = ImageView.VISIBLE
+    return
 
+    /*val url1 = "https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg"
+    val url2 = "https://sdk.eng.miniclip.com/code_challenge/banner/MNF_Banners_V1_300x50.jpg"
+    val url3 = "https://sdk.eng.miniclip.com/code_challenge/banner/UMG_Banner_V2_300x50px.jpg"
+
+    when (adNumber) {
+        0 -> Picasso.with(context).load(url1).into(imgView)
+        1 -> Picasso.with(context).load(url2).into(imgView)
+        2 -> Picasso.with(context).load(url3).into(imgView)
+    }
+    //Picasso.with(context).load(url1).into(imgView)
     return
     //return Build.VERSION.RELEASE
+    //a.setContentView(com.example.banneradmaker.R.layout.activity_main)*/
 }
 
