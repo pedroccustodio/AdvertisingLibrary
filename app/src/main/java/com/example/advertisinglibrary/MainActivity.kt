@@ -1,93 +1,43 @@
 package com.example.advertisinglibrary
 
-import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.example.banneradmaker.library
-import java.util.*
-import kotlin.concurrent.scheduleAtFixedRate
+import com.example.banneradmaker.dismissAd
+import com.example.banneradmaker.setAdPosition
+import com.example.banneradmaker.setAdSize
+import com.example.banneradmaker.showAd
 
 class MainActivity : AppCompatActivity() {
 
-   /* private var permission = 0
-    private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
-        permission = if(it){
-            1
-        }else{
-            0
-        }
-    }*/
-    val imagesUrl = arrayOf<String>("https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg",
-                                   "https://sdk.eng.miniclip.com/code_challenge/banner/MNF_Banners_V1_300x50.jpg",
-                                   "https://sdk.eng.miniclip.com/code_challenge/banner/UMG_Banner_V2_300x50px.jpg")
+    private lateinit var dismissBtn: Button
+    private lateinit var sizeBtn: Button
+    private lateinit var positionBtn: Button
+
+    private val imagesUrl = listOf<String>("https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg",
+                               "https://sdk.eng.miniclip.com/code_challenge/banner/MNF_Banners_V1_300x50.jpg",
+                               "https://sdk.eng.miniclip.com/code_challenge/banner/UMG_Banner_V2_300x50px.jpg")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       /*val context: Context = this
-       val mainExecutor = ContextCompat.getMainExecutor(this)
-       val t = Timer()*/
-       var adNumber = 0
+        showAd(this@MainActivity, imagesUrl)
 
-       val mainHandler = Handler(Looper.getMainLooper())
+        dismissBtn = findViewById(R.id.dismiss)
+        dismissBtn.setOnClickListener {
+            dismissAd(this@MainActivity)
+        }
 
-       mainHandler.post(object : Runnable {
-           override fun run() {
-               Log.d("PEDRO", "New Ad")
-               when (adNumber) {
-                   0 -> {
-                       library(this@MainActivity, imagesUrl[adNumber])
-                       adNumber = 1
-                   }
-                   1 -> {
-                       library(this@MainActivity, imagesUrl[adNumber])
-                       adNumber = 2;
-                   }
-                   2 -> {
-                       library(this@MainActivity, imagesUrl[adNumber])
-                       adNumber = 0;
-                   }
-               }
-               mainHandler.postDelayed(this, 10000)
-           }
-       })
+        sizeBtn = findViewById(R.id.size)
+        sizeBtn.setOnClickListener {
+            setAdSize(this@MainActivity, 30, 100)
+        }
 
-       /*Handler(Looper.getMainLooper()).postDelayed({
-           // Your Code
-
-           }
-       }, 1000)
-
-       val tt: TimerTask = object : TimerTask() {
-
-           override fun run() {
-
-           }
-       }
-       t.schedule(tt,0,10000);*/
-
-
-       /* requestPermissionLauncher.launch((android.Manifest.permission.WRITE_EXTERNAL_STORAGE))
-        if(permission==1){
-            library(this)
-        } else{
-            Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
-        }*/
-
-        //val tvDisplay: TextView = findViewById<TextView>(R.id.tv_displayInfo)
-        //tvDisplay.text = library()
-
-
-        //AlertDialog.Builder(this).setTitle("The result is $result").show()
+        positionBtn = findViewById(R.id.position)
+        positionBtn.setOnClickListener {
+            setAdPosition(this@MainActivity, 10f, 1860f)
+        }
     }
-
-
-
-
 }
 

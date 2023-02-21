@@ -4,54 +4,91 @@ package com.example.banneradmaker
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
 import java.util.*
 
 @SuppressLint("HardwareIds")
-fun library (context: Context, url: String){
+fun showAd (context: Context, listUrl: List<String>){
 
-    /*return "Brand: ${Build.BRAND} \n" +
-            "Model: ${Build.MODEL} \n" +
-            "ID: ${Build.ID} \n" +
-            "SDK: ${Build.VERSION.SDK_INT} \n" +
-            "Manufacture: ${Build.MANUFACTURER} \n" +
-            "Brand: ${Build.BRAND} \n" +
-            "User: ${Build.USER} \n" +
-            "Type: ${Build.TYPE} \n" +
-            "Base: ${Build.VERSION_CODES.BASE} \n" +
-            "Incremental: ${Build.VERSION.INCREMENTAL} \n" +
-            "Board: ${Build.BOARD} \n" +
-            "Host: ${Build.HOST} \n" +
-            "FingerPrint: ${Build.FINGERPRINT} \n" +
-            "Version Code: ${Build.VERSION.RELEASE}"
-}*/
-
-    /*AlertDialog.Builder(context).setTitle("Title")
-        .setMessage("Library in use").show()*/
     val a: Activity = context as Activity
+    val mainHandler = Handler(Looper.getMainLooper())
+    val imgView: ImageView = a.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+    var adNumber = 0
 
-
-    val imgView: ImageView = context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
-    Picasso.with(context).load(url).into(imgView)
+    mainHandler.post(object : Runnable {
+        override fun run() {
+            Picasso.with(context).load(listUrl[adNumber]).into(imgView)
+            if(adNumber == listUrl.size-1)
+            {
+                adNumber = 0
+            }else{
+                adNumber++
+            }
+            mainHandler.postDelayed(this, 10000)
+        }
+    })
 
     return
-
-    /*val url1 = "https://sdk.eng.miniclip.com/code_challenge/banner/BPM_Banner_V2_300x50px.jpg"
-    val url2 = "https://sdk.eng.miniclip.com/code_challenge/banner/MNF_Banners_V1_300x50.jpg"
-    val url3 = "https://sdk.eng.miniclip.com/code_challenge/banner/UMG_Banner_V2_300x50px.jpg"
-
-    when (adNumber) {
-        0 -> Picasso.with(context).load(url1).into(imgView)
-        1 -> Picasso.with(context).load(url2).into(imgView)
-        2 -> Picasso.with(context).load(url3).into(imgView)
-    }
-    //Picasso.with(context).load(url1).into(imgView)
-    return
-    //return Build.VERSION.RELEASE
-    //a.setContentView(com.example.banneradmaker.R.layout.activity_main)*/
 }
 
+fun dismissAd (context: Context){
+
+    val a: Activity = context as Activity
+    val imgView: ImageView = a.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+
+    imgView.visibility = View.INVISIBLE
+
+    return
+}
+
+fun setAdSize (context: Context, height: Int, width: Int){
+
+    val a: Activity = context as Activity
+    val imgView: ImageView = a.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+
+    imgView.requestLayout()
+    imgView.layoutParams.height = height
+    imgView.layoutParams.width = width
+
+    return
+}
+
+fun setAdPosition (context: Context, horizontalBias: Float, verticalBias: Float){
+
+    val a: Activity = context as Activity
+    val imgView: ImageView = context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+
+    imgView.requestLayout()
+
+    imgView.x = horizontalBias
+    imgView.y = verticalBias
+
+    return
+}
+
+/*return "Brand: ${Build.BRAND} \n" +
+        "Model: ${Build.MODEL} \n" +
+        "ID: ${Build.ID} \n" +
+        "SDK: ${Build.VERSION.SDK_INT} \n" +
+        "Manufacture: ${Build.MANUFACTURER} \n" +
+        "Brand: ${Build.BRAND} \n" +
+        "User: ${Build.USER} \n" +
+        "Type: ${Build.TYPE} \n" +
+        "Base: ${Build.VERSION_CODES.BASE} \n" +
+        "Incremental: ${Build.VERSION.INCREMENTAL} \n" +
+        "Board: ${Build.BOARD} \n" +
+        "Host: ${Build.HOST} \n" +
+        "FingerPrint: ${Build.FINGERPRINT} \n" +
+        "Version Code: ${Build.VERSION.RELEASE}"
+}*/
+
+/*AlertDialog.Builder(context).setTitle("Title")
+    .setMessage("Library in use").show()*/
