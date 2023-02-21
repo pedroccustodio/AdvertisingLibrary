@@ -64,7 +64,7 @@ fun setAdSize (context: Context, height: Int, width: Int){
 fun setAdPosition (context: Context, horizontalBias: Float, verticalBias: Float){
 
     val a: Activity = context as Activity
-    val imgView: ImageView = context.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
+    val imgView: ImageView = a.findViewById<View>(com.example.banneradmaker.R.id.imageView) as ImageView
 
     imgView.requestLayout()
 
